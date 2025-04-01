@@ -6,7 +6,7 @@ on:
       - dev_fix_from-to-www-redirect
 
 env:
-  REGISTRY: ''
+  REGISTRY: 'your-docker-registry.com'
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
@@ -40,10 +40,8 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Ingress-NGINX
-        run: |
-          cd build
-          ./build.sh
-        shell: bash -eo pipefail {0}
+        run: ./build.sh
+        shell: bash -eo pipefail
         working-directory: ./build
 
       - name: Build and push Docker image
@@ -52,5 +50,5 @@ jobs:
           context: ./rootfs
           file: rootfs/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: zjfans/ingress-nginx:1.1.0
-          platforms: linux/amd64
+          tags: zjfans/ingress-nginx:${{ github.sha }}
+          platforms: linux/amd64,linux/arm64
