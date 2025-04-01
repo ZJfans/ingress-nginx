@@ -6,7 +6,7 @@ on:
       - dev_fix_from-to-www-redirect
 
 env:
-  REGISTRY: 'your-docker-registry.com'
+  REGISTRY: ''
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
