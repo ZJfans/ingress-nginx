@@ -47,14 +47,14 @@ jobs:
 
       - name: Build jar
         run: |
-          cd backend
+          cd build
           ./build.sh
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./backend
-          file: backend/Dockerfile
+          context: ./rootfs
+          file: rootfs/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: zjfans/ingress-nginx:1.1.0
           platforms: linux/amd64
