@@ -41,7 +41,7 @@ jobs:
 
       - name: Build Ingress-NGINX
         run: ./build.sh
-        shell: bash
+        shell: bash --noprofile --norc -e
         working-directory: ./build
 
       - name: Build and push Docker image
