@@ -10,6 +10,7 @@ on:
 env:
   REGISTRY: 'docker.io'
   IMAGE_NAME: zjfans/ingress-nginx
+  BASE_IMAGE: 'nginx:alpine' # 设置默认的 BASE_IMAGE
 
 jobs:
   build-and-push:
@@ -50,3 +51,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           platforms: linux/amd64,linux/arm64
+          build-args: # 添加构建参数
+            BASE_IMAGE: ${{ env.BASE_IMAGE }}
