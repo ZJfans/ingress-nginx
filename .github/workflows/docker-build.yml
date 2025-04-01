@@ -20,11 +20,10 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
+      - name: Set up GO
+        uses: actions/setup-go@v4
         with:
-          distribution: 'temurin'
-          java-version: '18'
+          go-version: '1.22'
       
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'
@@ -42,7 +41,8 @@ jobs:
 
       - name: Build Ingress-NGINX
         run: |
-          ./build/build.sh
+          cd build
+          ./build.sh
         shell: bash -eo pipefail {0}
         working-directory: ./build
 
