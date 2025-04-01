@@ -52,4 +52,4 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           platforms: linux/amd64,linux/arm64
           build-args: # 添加构建参数
-            BASE_IMAGE: ${{ env.BASE_IMAGE }}
+          BASE_IMAGE: ${{ env.BASE_IMAGE }}
