@@ -42,8 +42,8 @@ jobs:
 
       - name: Build Ingress-NGINX
         run: |
-          ./build.sh 1.1.0
-        shell: bash
+          ./build/build.sh
+        shell: bash -eo pipefail {0}
         working-directory: ./build
 
       - name: Build and push Docker image
